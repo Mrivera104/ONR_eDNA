@@ -14,3 +14,9 @@ Using seqkit, chop up mitogenome fasta into 80bp length segments in a 1bp slidin
     
     seqkit sliding -s 1 -W 80 /scratch1/migriver_ONR/mitogen_files/angustirostris_CM055130.fasta | awk '{ if(NR%2==0){print substr($0,1,80)} else {print $0} }' > angustirostris_mitogenome_chunks.fasta
     
+# Manually BLAST fasta chunk files 
+Use code to manually BLAST each species fasta mitogenome chunk file to look for best matches 
+
+    blastn -query /scratch1/migriver_ONR/mitogen_frag/novaeangliae_mitogenome_chunks.fasta -out novaeangliae_mito_chunks_blastout.txt -db /redser4/resources/blastdb/v5/nt -outfmt 6 -num_threads 5 -max_target_seqs 25
+
+    blastn -query /scratch1/migriver_ONR/mitogen_frag/angustirostris_mitogenome_chunks.fasta -out angustirostris_mito_chunks_blastout.txt -db /redser4/resources/blastdb/v5/nt -outfmt 6 -num_threads 5 -max_target_seqs 25
