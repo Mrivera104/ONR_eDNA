@@ -8,7 +8,7 @@ The northern elephant seal mitogenome: GenBank: CM055130.1. Published March 15th
 Both downloaded from NCCBI and placed within /scratch1/migriver_ONR/mitogen_files
 
 # Chop up mitogenome into 80bp chunks 
-Using seqkit, chop up mitogenome fasta into 80bp length segments in a 1bp sliding window
+Using seqkit, chop up mitogenome fasta into 80bp length segments in a 1bp sliding window and write into a new fasta file using awk 
 
     seqkit sliding -s 1 -W 80 /scratch1/migriver_ONR/mitogen_files/novaeangliae_NC_006927.fasta | awk '{ if(NR%2==0){print substr($0,1,80)} else {print $0} }' > novaeangliae_mitogenome_chunks.fasta
     
