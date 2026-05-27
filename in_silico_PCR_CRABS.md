@@ -6,6 +6,7 @@ MarVer3:
 - MarVer3F: AGACGAGAAGACCCTRTG 18bp 16S region
 - MarVer3R: GGATTGCGCTGTTATCCC 18bp
 
+Average amplicon size: ~245bp
 
 CRABS (Creating Reference databases for Amplicon-Based Sequencing) is a versatile software program that generates curated reference databases for metagenomic analysis. Here is the link to that github repository:
 https://github.com/gjeunen/reference_database_creator#52-module-2-import-downloaded-data-into-crabs-format
@@ -54,4 +55,7 @@ gunzip nucl_gb.accession2taxid.gz
 
 Next, we will import these files into CRABS and create a CRABS format file for in silico PCR. 
 
+```
+crabs --import --import-format ncbi --input ncbi_onr_marver3_refdatabase.fasta --output ncbi_onr_marver3_refdatabase.txt --ranks 'superkingdom;phylum;class;order;family;genus;species' --names names.dmp --nodes nodes.dmp --acc2taxid nucl_gb.accession2taxid
+```
 
