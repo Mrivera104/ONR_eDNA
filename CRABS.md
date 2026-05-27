@@ -9,9 +9,9 @@ Installing CRABS is as easy as cloning the github repo. After that, we can get s
 
 The CRABS workflow consists of seven total modules with unique functionalities. We probably won't need to use every single module for what we need to use CRABS for, but we'll see as we go along. 
 
-Module 1: download data from online repositories
-Module 2: import downloaded data into CRABS format
-Module 3: extract amplicon regions through in silico PCR
+Module 1: download data from online repositories\
+Module 2: import downloaded data into CRABS format\
+Module 3: extract amplicon regions through in silico PCR\
 Module 4: retrieve amplicons without primer-binding regions
 Module 5: curate and subset the local database via multiple filtering parameters
 Module 6: export  the local database
