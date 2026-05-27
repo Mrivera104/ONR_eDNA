@@ -1,5 +1,12 @@
 # Creating a  curated reference database for metagenomic analysis and in silico PCR using CRABS
 
+We need to check that our chosen primer (MarVer3 primer) is going to work well for our purposes. The MarVer3 primer (Valsecchi et al. 2020) was made using 71 complete mitochondrial genome sequences retrieved from GenBank. These sequences represent 30 marine vertebrate families, including most marine mammal families, with focus on species in the Mediterranean Sea. Four human mitochondrial genomes were used to design primers with reduced amplification efficiency for human DNA. 
+
+MarVer3: 
+- MarVer3F: AGACGAGAAGACCCTRTG 18bp 16S region
+- MarVer3R: GGATTGCGCTGTTATCCC 18bp
+
+
 CRABS (Creating Reference databases for Amplicon-Based Sequencing) is a versatile software program that generates curated reference databases for metagenomic analysis. Here is the link to that github repository:
 https://github.com/gjeunen/reference_database_creator#52-module-2-import-downloaded-data-into-crabs-format
 
