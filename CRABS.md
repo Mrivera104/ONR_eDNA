@@ -12,10 +12,18 @@ The CRABS workflow consists of seven total modules with unique functionalities. 
 Module 1: download data from online repositories\
 Module 2: import downloaded data into CRABS format\
 Module 3: extract amplicon regions through in silico PCR\
-Module 4: retrieve amplicons without primer-binding regions
-Module 5: curate and subset the local database via multiple filtering parameters
-Module 6: export  the local database
-Module 7: post-processing functions to explore and provide a summary overview of the local reference database
+Module 4: retrieve amplicons without primer-binding regions\
+Module 5: curate and subset the local database via multiple filtering parameters\
+Module 6: export  the local database\
+Module 7: post-processing functions to explore and provide a summary overview of the local reference database\
 
 # STEP 1: Download data from online repositories 
+Initial sequencing data can be downloaded by CRABS from multiple different online repositories. I will be downloading sequencing data from NCBI for this project, as it's the one I'm most comfortable with and probably the one that has the most data? I could be wrong ... 
+
+I compiled my reference database using the following code: 
+
+```
+crabs --download-ncbi --query '("Artiodactyla"[Organism] OR "Odontoceti"[Organism] OR "Mysticeti"[Organism] OR "Phocidae"[Organism] OR "Otariidae"[Organism] OR "Carnivora"[Organism] OR "Aves"[Organism] OR "Chondrichthyes"[Organism] OR ("Dipnomorpha"[Organism] OR "Coelacanthiformes"[Organism] OR "Actinopterygii"[Organism]) OR "Homo"[Organism] OR "Homininae"[Organism] AND biomol_genomic[PROP] AND is_nuccore[filter] AND ("Artiodactyla"[Organism] OR "Odontoceti"[Organism] OR "Mysticeti"[Organism] OR "Carnivora"[Organism] OR "Phocidae"[Organism] OR "Otariidae"[Organism] OR "Aves"[Organism] AND "Chondrichthyes"[Organism] OR ("Dipnomorpha"[Organism] OR "Coelacanthiformes"[Organism] OR "Actinopterygii"[Organism]) OR "Homo"[Organism] OR "Homininae"[Organism] AND mitochondrion[filter]) AND ("150"[SLEN] : "300"[SLEN])' --output ncbi_onr_all.fasta --email migriver@ucsc.edu --database nucleotide
+```
+I pretty much made sure to include any close relative, or any other vertebrate we may or may not have in the environment we're collecting these water samples from. I also included humans (and other primates) because of, well, all the human contamination that goes into these samples. 
 
