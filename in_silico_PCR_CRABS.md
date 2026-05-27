@@ -31,7 +31,25 @@ Initial sequencing data can be downloaded by CRABS from multiple different onlin
 I compiled my reference database using the following code: 
 
 ```
-crabs --download-ncbi --query '("Artiodactyla"[Organism] OR "Odontoceti"[Organism] OR "Mysticeti"[Organism] OR "Phocidae"[Organism] OR "Otariidae"[Organism] OR "Carnivora"[Organism] OR "Aves"[Organism] OR "Chondrichthyes"[Organism] OR ("Dipnomorpha"[Organism] OR "Coelacanthiformes"[Organism] OR "Actinopterygii"[Organism]) OR "Homo"[Organism] OR "Homininae"[Organism] AND biomol_genomic[PROP] AND is_nuccore[filter] AND ("Artiodactyla"[Organism] OR "Odontoceti"[Organism] OR "Mysticeti"[Organism] OR "Carnivora"[Organism] OR "Phocidae"[Organism] OR "Otariidae"[Organism] OR "Aves"[Organism] AND "Chondrichthyes"[Organism] OR ("Dipnomorpha"[Organism] OR "Coelacanthiformes"[Organism] OR "Actinopterygii"[Organism]) OR "Homo"[Organism] OR "Homininae"[Organism] AND mitochondrion[filter]) AND ("150"[SLEN] : "300"[SLEN])' --output ncbi_onr_all.fasta --email migriver@ucsc.edu --database nucleotide
+    crabs --download-ncbi \
+  --query '(
+    "Artiodactyla"[Organism] OR
+    "Odontoceti"[Organism] OR
+    "Mysticeti"[Organism] OR
+    "Phocidae"[Organism] OR
+    "Otariidae"[Organism] OR
+    "Carnivora"[Organism] OR
+    "Aves"[Organism] OR
+    "Chondrichthyes"[Organism] OR
+    "Dipnomorpha"[Organism] OR
+    "Coelacanthiformes"[Organism] OR
+    "Actinopterygii"[Organism] OR
+    "Homo"[Organism] OR
+    "Homininae"[Organism])
+  AND mitochondrion[filter]' \
+  --output ncbi_onr_16S_mito.fasta \
+  --email migriver@ucsc.edu \
+  --database nucleotide
 ```
 I pretty much made sure to include any close relative, or any other vertebrate we may or may not have in the environment we're collecting these water samples from. I also included humans (and other primates) because of, well, all the human contamination that goes into these samples. 
 
