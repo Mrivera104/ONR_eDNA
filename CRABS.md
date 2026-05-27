@@ -27,3 +27,22 @@ crabs --download-ncbi --query '("Artiodactyla"[Organism] OR "Odontoceti"[Organis
 ```
 I pretty much made sure to include any close relative, or any other vertebrate we may or may not have in the environment we're collecting these water samples from. I also included humans (and other primates) because of, well, all the human contamination that goes into these samples. 
 
+
+# STEP 2: Import downloaded data into CRABS format
+
+First, we need to download the appropriate taxonomy database files to map accession numbers to taxonomic ranks. These are separate from the fasta file we compiled from NCBI with all the sequence data. 
+
+We need: 
+1.) NBCI names.dmp file (taxon names)
+2.) NCBI nodes.dmp file (taxonomix hierarchy)
+3.) NCBI accession -> taxid mapping file 
+
+```
+wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdump.tar.gz
+tar -xvf taxdump.tar.gz  # extracts names.dmp and nodes.dmp
+
+wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/nucl_gb.accession2taxid.gz
+gunzip nucl_gb.accession2taxid.gz
+'''
+
+
