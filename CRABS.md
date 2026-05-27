@@ -43,6 +43,5 @@ tar -xvf taxdump.tar.gz  # extracts names.dmp and nodes.dmp
 
 wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/nucl_gb.accession2taxid.gz
 gunzip nucl_gb.accession2taxid.gz
-'''
-
+```
 
