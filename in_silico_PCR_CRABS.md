@@ -74,6 +74,10 @@ gunzip nucl_gb.accession2taxid.gz
 Next, we will import these files into CRABS and create a CRABS format file for in silico PCR. 
 
 ```
-crabs --import --import-format ncbi --input ncbi_onr_marver3_refdatabase.fasta --output ncbi_onr_marver3_refdatabase.txt --ranks 'superkingdom;phylum;class;order;family;genus;species' --names names.dmp --nodes nodes.dmp --acc2taxid nucl_gb.accession2taxid
+crabs --import --import-format ncbi --input ncbi_onr_16S_mito.fasta --output ncbi_onr_marver3_16S_mito_refdatabase.txt --ranks 'superkingdom;phylum;class;order;family;genus;species' --names names.dmp --nodes nodes.dmp --acc2tax nucl_gb.accession2taxid
 ```
+# STEP 3: Extract Amplicon Regions through in silico PCR Analysis
 
+```
+crabs --in-silico-pcr --relaxed --input ncbi_onr_marver3_16S_mito_refdatabase.txt --output ncbi_onr_marver3_16S_mito_refdatabase.txt --forward AGACGAGAAGACCCTRTG --reverse GGATTGCGCTGTTATCCC
+```
