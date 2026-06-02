@@ -79,5 +79,5 @@ crabs --import --import-format ncbi --input ncbi_onr_16S_mito.fasta --output ncb
 # STEP 3: Extract Amplicon Regions through in silico PCR Analysis
 
 ```
-crabs --in-silico-pcr --relaxed --input ncbi_onr_marver3_16S_mito_refdatabase.txt --output ncbi_onr_marver3_16S_mito_refdatabase.txt --forward AGACGAGAAGACCCTRTG --reverse GGATTGCGCTGTTATCCC
+crabs --in-silico-pcr --relaxed --input ncbi_onr_marver3_16S_mito_refdatabase.txt --output ncbi_onr_marver3_16S_mito_refdatabase_insilico_pcr.txt --forward AGACGAGAAGACCCTRTG --reverse GGATTGCGCTGTTATCCC
 ```
