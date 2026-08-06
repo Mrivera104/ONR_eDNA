@@ -31,25 +31,26 @@ Initial sequencing data can be downloaded by CRABS from multiple different onlin
 I compiled my reference database using the following code: 
 
 ```
-    crabs --download-ncbi \
-  --query '(
-    "Artiodactyla"[Organism] OR
-    "Odontoceti"[Organism] OR
-    "Mysticeti"[Organism] OR
-    "Phocidae"[Organism] OR
-    "Otariidae"[Organism] OR
-    "Carnivora"[Organism] OR
-    "Aves"[Organism] OR
-    "Chondrichthyes"[Organism] OR
-    "Dipnomorpha"[Organism] OR
-    "Coelacanthiformes"[Organism] OR
-    "Actinopterygii"[Organism] OR
-    "Homo"[Organism] OR
-    "Homininae"[Organism])
-  AND mitochondrion[filter]' \
-  --output ncbi_onr_16S_mito.fasta \
+crabs --download-ncbi \
+  --query '("Actinopterygii"[Organism] OR "Chondrichthyes"[Organism] OR
+            "Dipnomorpha"[Organism] OR "Coelacanthiformes"[Organism])
+           AND mitochondrion[filter]' \
+  --output ncbi_fish_16S.fasta \
   --email migriver@ucsc.edu \
   --database nucleotide
+
+  crabs --download-ncbi \
+  --query '("Artiodactyla"[Organism] OR "Phocidae"[Organism] OR
+            "Otariidae"[Organism] OR "Odontoceti"[Organism] OR
+            "Mysticeti"[Organism] OR "Carnivora"[Organism] OR
+            "Aves"[Organism] OR "Homo"[Organism] OR "Homininae"[Organism])
+           AND mitochondrion[filter]
+           AND complete genome[Title]' \
+  --output ncbi_tetrapod_mitogenomes.fasta \
+  --email migriver@ucsc.edu \
+  --database nucleotide
+
+crabs --merge --input 'ncbi_tetrapod_mitogenomes.txt;ncbi_fish_16S.txt' --uniq --output tetrapod_fish_16S_merged.txt
 ```
 I pretty much made sure to include any close relative, or any other vertebrate we may or may not have in the environment we're collecting these water samples from. I also included humans (and other primates) because of, well, all the human contamination that goes into these samples. 
 
@@ -74,10 +75,22 @@ gunzip nucl_gb.accession2taxid.gz
 Next, we will import these files into CRABS and create a CRABS format file for in silico PCR. 
 
 ```
-crabs --import --import-format ncbi --input ncbi_onr_16S_mito.fasta --output ncbi_onr_marver3_16S_mito_refdatabase.txt --ranks 'superkingdom;phylum;class;order;family;genus;species' --names names.dmp --nodes nodes.dmp --acc2tax nucl_gb.accession2taxid
+-- code here --
 ```
 # STEP 3: Extract Amplicon Regions through in silico PCR Analysis
 
 ```
-crabs --in-silico-pcr --relaxed --input ncbi_onr_marver3_16S_mito_refdatabase.txt --output ncbi_onr_marver3_16S_mito_refdatabase_insilico_pcr.txt --forward AGACGAGAAGACCCTRTG --reverse GGATTGCGCTGTTATCCC
+crabs --in-silico-pcr --relaxed --input tetrapod_fish_16S_merged.txt --output tetrapod_fish_16S_merged --forward AGACGAGAAGACCCTRTG --reverse GGATTGCGCTGTTATCCC 
+```
+
+```
+crabs --pairwise-global-alignment --input tetrapod_fish_16S_merged.txt --amplicons tetrapod_fish_16S_merged_insilico_pcr.txt --output tetrapod_fish_16S_merged_insilico_aligned.txt --forward AGACGAGAAGACCCTRTG --reverse GGATTGCGCTGTTATCCC --size-select 10000 --percent-identity 0.95 --coverage 95
+```
+
+```
+crabs --dereplicate --input tetrapod_fish_16S_merged_insilico_aligned.txt --output tetrapod_fish_16S_merged_insilico_aligned_dereplicated.txt --dereplication-method 'unique_species'
+```
+
+```
+crabs --filter --input tetrapod_fish_16S_merged_insilico_aligned_dereplicated.txt --output tetrapod_fish_16S_merged_insilico_aligned_dereplicated_filtered.txt --minimum-length 100 --maximum-length 300 --maximum-n 1 --environmental --no-species-id --rank-na 2
 ```
